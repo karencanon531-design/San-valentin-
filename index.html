@@ -6,112 +6,114 @@
 <title>Para mi vida 💖</title>
 
 <style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
+  font-family:Arial,sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
 }
 
 /* CARTA PRINCIPAL */
-.card {
-  background: rgba(255,255,255,0.4);
-  backdrop-filter: blur(12px);
-  padding: 25px;
-  border-radius: 25px;
-  text-align: center;
-  width: 90%;
-  max-width: 380px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-  z-index: 10;
+.card{
+  background:rgba(255,255,255,0.4);
+  backdrop-filter:blur(12px);
+  padding:25px;
+  border-radius:25px;
+  text-align:center;
+  width:90%;
+  max-width:380px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  z-index:10;
 }
 
-h1 { color: #ff4d6d; margin-bottom: 10px; }
+h1{color:#ff4d6d;}
+p{color:white;font-size:16px;line-height:1.5;}
 
-p {
-  color: white;
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 10px;
+.buttons{
+  margin-top:20px;
+  position:relative;
+  height:80px;
 }
 
-.buttons {
-  margin-top: 20px;
-  position: relative;
-  height: 80px;
+button{
+  padding:12px 22px;
+  border-radius:30px;
+  border:none;
+  font-size:16px;
+  cursor:pointer;
 }
 
-button {
-  padding: 12px 22px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+#si{background:#ff4d6d;color:white;}
+#no{background:white;color:#ff4d6d;position:absolute;}
+
+/* CARTAS */
+.carta{
+  display:none;
+  position:fixed;
+  inset:0;
+  margin:auto;
+  background:white;
+  color:#ff4d6d;
+  padding:30px;
+  border-radius:22px;
+  max-width:320px;
+  width:85%;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  z-index:20;
+
+  flex-direction:column;
+  gap:15px;
+  justify-content:center;
+  align-items:center;
 }
 
-#si { background: #ff4d6d; color: white; }
-#no { background: white; color: #ff4d6d; position: absolute; }
-
-/* CARTAS 2 Y 3 */
-.carta {
-  display: none;
-  position: fixed;
-  inset: 0;
-  margin: auto;
-  background: white;
-  color: #ff4d6d;
-  padding: 30px;
-  border-radius: 22px;
-  max-width: 320px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  z-index: 20;
-
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  justify-content: center;
-  align-items: center;
+.carta p{
+  font-size:18px;
+  line-height:1.5;
 }
 
-.carta p {
-  font-size: 18px;
-  line-height: 1.5;
+/* 💓 LATIDO SOLO PARA CARTA 2 */
+.latido{
+  animation:latido 1.5s infinite;
+}
+
+@keyframes latido{
+  0%{transform:scale(1);}
+  30%{transform:scale(1.05);}
+  60%{transform:scale(1);}
 }
 
 /* CORAZONES */
-.heart {
-  position: absolute;
-  font-size: 22px;
-  animation: flotar 6s linear infinite;
-  opacity: 0.8;
-  z-index: 3;
+.heart{
+  position:absolute;
+  font-size:22px;
+  animation:flotar 6s linear infinite;
+  opacity:.8;
 }
 
-@keyframes flotar {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-10vh); }
+@keyframes flotar{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
 }
 
 /* FRASES */
-.frase {
-  position: absolute;
-  color: white;
-  font-size: 15px;
-  pointer-events: none;
-  animation: flotarFrase 4.5s ease-out forwards;
-  z-index: 5;
+.frase{
+  position:absolute;
+  color:white;
+  font-size:15px;
+  pointer-events:none;
+  animation:fraseFlota 4.5s ease-out forwards;
 }
 
-@keyframes flotarFrase {
-  0% { opacity: 0; transform: translateY(20px); }
-  20% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-90px); }
+@keyframes fraseFlota{
+  0%{opacity:0;transform:translateY(20px);}
+  20%{opacity:1;}
+  100%{opacity:0;transform:translateY(-90px);}
 }
 </style>
 </head>
@@ -120,30 +122,29 @@ button {
 
 <!-- CARTA PRINCIPAL -->
 <div class="card" id="principal">
-  <h1>💖 Vida 💖</h1>
+  <h1>💖 Mi Vida 💖</h1>
 
   <p>
-    Hoy cumplimos un mes más juntos  
-    y aunque no siempre pueda estar físicamente,  
-    hay algo que nunca cambia:
+    hoy cumplimos un mes más juntas<br>
+    y aunque no siempre pueda estar físicamente,<br>
+    hay algo que nunca cambia:<br>
+    <strong>siempre te elijo a ti.</strong>
   </p>
 
-  <p><strong>siempre te elijo a ti.</strong></p>
-
   <p>
-    Hoy el amor se celebra en todas partes,  
-    pero yo no quiero celebrar cualquier amor,  
+    Hoy el amor se celebra en todas partes,<br>
+    pero yo no quiero celebrar cualquier amor,<br>
     quiero celebrar el que construimos tú y yo.
   </p>
 
   <p>
-    Porque contigo cada día se siente especial  
+    Porque contigo cada día se siente especial<br>
     y este amor merece su propio momento…
   </p>
 
   <p>
-    quiero que este día sea nuestro,  
-    hacerlo especial a nuestra manera  
+    quiero que este día sea nuestro,<br>
+    hacerlo especial a nuestra manera<br>
     y llamarlo <strong>nuestro San Valentín</strong>.
   </p>
 
@@ -155,106 +156,78 @@ button {
   </div>
 </div>
 
-<!-- CARTA 2 -->
-<div class="carta" id="carta2">
+<!-- CARTA 2 (LATIDO) -->
+<div class="carta latido" id="carta2">
   <p>
-    Gracias por decir que sí, mi vida 💖  
-    contigo todo se siente hogar.
+    Gracias por decir que sí, mi vida 💖<br><br>
+    entonces ya es oficial…<br>
+    tenemos una cita tú y yo.<br><br>
+    Hoy a las <strong>3:30 pm</strong><br>
+    en el <strong>Malecón</strong> ✨
   </p>
   <button onclick="abrirCarta3()">Cerrar</button>
 </div>
 
 <!-- CARTA 3 -->
 <div class="carta" id="carta3">
-  <p>
-    <strong>Te amo</strong><br><br>
-    más de lo que las palabras pueden decir,<br>
-    cacheticos ☺️
-  </p>
+  <p><strong>Te amo</strong><br>más de lo que imaginas ☺️</p>
   <button onclick="final()">Cerrar</button>
 </div>
 
 <script>
-let contadorNo = 0;
-let sizeSi = 1;
+let contadorNo=0;
+let sizeSi=1;
 
-const frasesNo = [
-  "¿Segura? 🥺",
-  "¿De verdad segura? 😢",
-  "Piénsalo otra vez 💔",
-  "El sí se ve mejor 😏",
-  "Ya casi dices que sí 💕"
-];
-
-const frasesLindas = [
-  "Te amo 💖",
-  "Siempre te elijo",
-  "Eres mi lugar seguro",
-  "Mi corazón es tuyo",
-  "Gracias por existir",
-  "Mi persona favorita",
-  "Contigo todo es mejor",
-  "Tu sonrisa es mi calma",
-  "Amarte es fácil",
-  "Eres mi hogar",
-  "Nuestro amor es real",
-  "Mi vida eres tú",
-  "Tú y yo siempre"
-];
-
-// BOTÓN NO
-function decirNo() {
-  const no = document.getElementById("no");
-  const si = document.getElementById("si");
-
-  no.innerText = frasesNo[Math.min(contadorNo, frasesNo.length - 1)];
+function decirNo(){
+  const no=document.getElementById("no");
+  const si=document.getElementById("si");
+  const frases=["¿Segura? 🥺","¿De verdad? 😢","¿Super segura?","Piénsalo 💔","El sí se ve mejor 😏","Ya casi dices que sí"];
+  no.innerText=frases[Math.min(contadorNo,frases.length-1)];
   contadorNo++;
-
-  sizeSi += 0.25;
-  si.style.transform = `scale(${sizeSi})`;
-
-  no.style.left = Math.random() * 200 + "px";
-  no.style.top = Math.random() * 60 + "px";
+  sizeSi+=0.25;
+  si.style.transform=`scale(${sizeSi})`;
+  no.style.left=Math.random()*200+"px";
+  no.style.top=Math.random()*60+"px";
 }
 
-// FLUJO
-function abrirCarta2() {
-  document.getElementById("principal").style.display = "none";
-  document.getElementById("carta2").style.display = "flex";
+function abrirCarta2(){
+  principal.style.display="none";
+  carta2.style.display="flex";
 }
 
-function abrirCarta3() {
-  document.getElementById("carta2").style.display = "none";
-  document.getElementById("carta3").style.display = "flex";
+function abrirCarta3(){
+  carta2.style.display="none";
+  carta3.style.display="flex";
 }
 
-function final() {
-  document.getElementById("carta3").style.display = "none";
-  setInterval(crearFrase, 1000);
+function final(){
+  carta3.style.display="none";
+  setInterval(crearFrase,1000);
 }
 
-// FRASES
-function crearFrase() {
-  const f = document.createElement("div");
-  f.className = "frase";
-  f.innerText = frasesLindas[Math.floor(Math.random() * frasesLindas.length)];
-  f.style.left = Math.random() * 90 + "vw";
-  f.style.top = Math.random() * 90 + "vh";
+function crearFrase(){
+  const frases=[
+    "Te amo 💖","Siempre te elijo","Eres mi hogar",
+    "Mi persona favorita","Gracias por existir",
+    "Contigo todo es mejor","Mi vida eres tú","Eres lo mejor","Te amo cada dia más"
+  ];
+  const f=document.createElement("div");
+  f.className="frase";
+  f.innerText=frases[Math.floor(Math.random()*frases.length)];
+  f.style.left=Math.random()*90+"vw";
+  f.style.top=Math.random()*90+"vh";
   document.body.appendChild(f);
-  setTimeout(() => f.remove(), 4500);
+  setTimeout(()=>f.remove(),4500);
 }
 
-// CORAZONES
-function crearCorazon() {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerHTML = "💗";
-  h.style.left = Math.random() * 100 + "vw";
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💗";
+  h.style.left=Math.random()*100+"vw";
   document.body.appendChild(h);
-  setTimeout(() => h.remove(), 6000);
-}
-
-setInterval(crearCorazon, 450);
+  setTimeout(()=>h.remove(),6000);
+},450);
 </script>
 
 </body>
