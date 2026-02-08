@@ -8,7 +8,7 @@
 <style>
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
   font-family: Arial, sans-serif;
   display: flex;
@@ -17,25 +17,32 @@ body {
   overflow: hidden;
 }
 
-/* Tarjeta principal */
+/* CARTA PRINCIPAL */
 .card {
-  background: rgba(255,255,255,0.35);
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(12px);
   padding: 25px;
   border-radius: 25px;
   text-align: center;
-  max-width: 360px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 380px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
   z-index: 10;
 }
 
-h1 { color: #ff4d6d; }
-p { color: white; font-size: 16px; line-height: 1.4; }
+h1 { color: #ff4d6d; margin-bottom: 10px; }
+
+p {
+  color: white;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
 
 .buttons {
   margin-top: 20px;
   position: relative;
-  height: 90px;
+  height: 80px;
 }
 
 button {
@@ -50,7 +57,7 @@ button {
 #si { background: #ff4d6d; color: white; }
 #no { background: white; color: #ff4d6d; position: absolute; }
 
-/* Cartas */
+/* CARTAS 2 Y 3 */
 .carta {
   display: none;
   position: fixed;
@@ -59,9 +66,8 @@ button {
   background: white;
   color: #ff4d6d;
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 22px;
   max-width: 320px;
-  height: fit-content;
   text-align: center;
   box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   z-index: 20;
@@ -74,17 +80,17 @@ button {
 }
 
 .carta p {
-  color: #ff4d6d;
   font-size: 18px;
+  line-height: 1.5;
 }
 
-/* Corazones */
+/* CORAZONES */
 .heart {
   position: absolute;
   font-size: 22px;
   animation: flotar 6s linear infinite;
   opacity: 0.8;
-  z-index: 5;
+  z-index: 3;
 }
 
 @keyframes flotar {
@@ -92,71 +98,77 @@ button {
   to { transform: translateY(-10vh); }
 }
 
-/* Frases */
+/* FRASES */
 .frase {
   position: absolute;
   color: white;
-  font-size: 14px;
+  font-size: 15px;
   pointer-events: none;
-  animation: flotarFrase 4s ease-out forwards;
-  z-index: 15;
+  animation: flotarFrase 4.5s ease-out forwards;
+  z-index: 5;
 }
 
 @keyframes flotarFrase {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-80px);
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-90px); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- TARJETA PRINCIPAL -->
+<!-- CARTA PRINCIPAL -->
 <div class="card" id="principal">
-  <h1>💖 Mi vida 💖</h1>
+  <h1>💖 Vida 💖</h1>
 
   <p>
     Hoy cumplimos un mes más juntos  
     y aunque no siempre pueda estar físicamente,  
-    hay algo que nunca cambia:  
-    <strong>siempre te elijo a ti</strong>.
+    hay algo que nunca cambia:
+  </p>
+
+  <p><strong>siempre te elijo a ti.</strong></p>
+
+  <p>
+    Hoy el amor se celebra en todas partes,  
+    pero yo no quiero celebrar cualquier amor,  
+    quiero celebrar el que construimos tú y yo.
   </p>
 
   <p>
-    Quiero celebrar <strong>el amor que construimos tú y yo</strong>.
+    Porque contigo cada día se siente especial  
+    y este amor merece su propio momento…
   </p>
 
-  <p><strong>¿Quieres ser mi San Valentín? 💘</strong></p>
+  <p>
+    quiero que este día sea nuestro,  
+    hacerlo especial a nuestra manera  
+    y llamarlo <strong>nuestro San Valentín</strong>.
+  </p>
+
+  <p><strong>¿Quieres ser mi San Valentín? 💖</strong></p>
 
   <div class="buttons">
-    <button id="si" onclick="abrirCarta1()">Sí 💕</button>
+    <button id="si" onclick="abrirCarta2()">Sí 💕</button>
     <button id="no" onclick="decirNo()">No 🙈</button>
   </div>
-</div>
-
-<!-- CARTA 1 -->
-<div class="carta" id="carta1">
-  <p>
-    Gracias por decir que sí, mi vida 💖  
-    caminar contigo es mi lugar favorito.
-  </p>
-  <button onclick="cerrarCarta1()">Cerrar</button>
 </div>
 
 <!-- CARTA 2 -->
 <div class="carta" id="carta2">
   <p>
+    Gracias por decir que sí, mi vida 💖  
+    contigo todo se siente hogar.
+  </p>
+  <button onclick="abrirCarta3()">Cerrar</button>
+</div>
+
+<!-- CARTA 3 -->
+<div class="carta" id="carta3">
+  <p>
     <strong>Te amo</strong><br><br>
-    y eres el amor de mi vida,<br>
+    más de lo que las palabras pueden decir,<br>
     cacheticos ☺️
   </p>
   <button onclick="final()">Cerrar</button>
@@ -175,15 +187,22 @@ const frasesNo = [
 ];
 
 const frasesLindas = [
-  "Te amo más de lo que imaginas 💖",
-  "Eres mi lugar seguro",
+  "Te amo 💖",
   "Siempre te elijo",
-  "Mi persona favorita",
+  "Eres mi lugar seguro",
+  "Mi corazón es tuyo",
   "Gracias por existir",
-  "Tu sonrisa es mi calma"
+  "Mi persona favorita",
+  "Contigo todo es mejor",
+  "Tu sonrisa es mi calma",
+  "Amarte es fácil",
+  "Eres mi hogar",
+  "Nuestro amor es real",
+  "Mi vida eres tú",
+  "Tú y yo siempre"
 ];
 
-// Botón NO
+// BOTÓN NO
 function decirNo() {
   const no = document.getElementById("no");
   const si = document.getElementById("si");
@@ -198,23 +217,23 @@ function decirNo() {
   no.style.top = Math.random() * 60 + "px";
 }
 
-// Cartas
-function abrirCarta1() {
+// FLUJO
+function abrirCarta2() {
   document.getElementById("principal").style.display = "none";
-  document.getElementById("carta1").style.display = "flex";
-}
-
-function cerrarCarta1() {
-  document.getElementById("carta1").style.display = "none";
   document.getElementById("carta2").style.display = "flex";
 }
 
-function final() {
+function abrirCarta3() {
   document.getElementById("carta2").style.display = "none";
-  setInterval(crearFrase, 1200);
+  document.getElementById("carta3").style.display = "flex";
 }
 
-// Frases flotantes
+function final() {
+  document.getElementById("carta3").style.display = "none";
+  setInterval(crearFrase, 1000);
+}
+
+// FRASES
 function crearFrase() {
   const f = document.createElement("div");
   f.className = "frase";
@@ -222,10 +241,10 @@ function crearFrase() {
   f.style.left = Math.random() * 90 + "vw";
   f.style.top = Math.random() * 90 + "vh";
   document.body.appendChild(f);
-  setTimeout(() => f.remove(), 4000);
+  setTimeout(() => f.remove(), 4500);
 }
 
-// Corazones
+// CORAZONES
 function crearCorazon() {
   const h = document.createElement("div");
   h.className = "heart";
@@ -235,7 +254,7 @@ function crearCorazon() {
   setTimeout(() => h.remove(), 6000);
 }
 
-setInterval(crearCorazon, 400);
+setInterval(crearCorazon, 450);
 </script>
 
 </body>
