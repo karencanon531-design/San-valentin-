@@ -26,7 +26,7 @@ body {
   text-align: center;
   max-width: 360px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  z-index: 5;
+  z-index: 10;
 }
 
 h1 { color: #ff4d6d; }
@@ -76,7 +76,6 @@ button {
 .carta p {
   color: #ff4d6d;
   font-size: 18px;
-  line-height: 1.4;
 }
 
 /* Corazones */
@@ -85,6 +84,7 @@ button {
   font-size: 22px;
   animation: flotar 6s linear infinite;
   opacity: 0.8;
+  z-index: 5;
 }
 
 @keyframes flotar {
@@ -92,25 +92,35 @@ button {
   to { transform: translateY(-10vh); }
 }
 
-/* Frases finales */
+/* Frases */
 .frase {
   position: absolute;
   color: white;
   font-size: 14px;
-  opacity: 0;
-  animation: aparecer 3s ease forwards;
+  pointer-events: none;
+  animation: flotarFrase 4s ease-out forwards;
+  z-index: 15;
 }
 
-@keyframes aparecer {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes flotarFrase {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- CONTENIDO PRINCIPAL -->
+<!-- TARJETA PRINCIPAL -->
 <div class="card" id="principal">
   <h1>💖 Mi vida 💖</h1>
 
@@ -122,15 +132,7 @@ button {
   </p>
 
   <p>
-    Hoy el amor se celebra en todas partes,  
-    pero yo no quiero celebrar cualquier amor,  
-    quiero celebrar <strong>el que construimos tú y yo</strong>.
-  </p>
-
-  <p>
-    Quiero que este día sea nuestro,  
-    hacerlo especial a nuestra manera  
-    y llamarlo <strong>nuestro San Valentín</strong>.
+    Quiero celebrar <strong>el amor que construimos tú y yo</strong>.
   </p>
 
   <p><strong>¿Quieres ser mi San Valentín? 💘</strong></p>
@@ -145,8 +147,7 @@ button {
 <div class="carta" id="carta1">
   <p>
     Gracias por decir que sí, mi vida 💖  
-    No sabes lo feliz que me hace  
-    caminar este camino contigo.
+    caminar contigo es mi lugar favorito.
   </p>
   <button onclick="cerrarCarta1()">Cerrar</button>
 </div>
@@ -176,17 +177,13 @@ const frasesNo = [
 const frasesLindas = [
   "Te amo más de lo que imaginas 💖",
   "Eres mi lugar seguro",
-  "Contigo todo es mejor",
   "Siempre te elijo",
-  "Mi amor por ti no duda",
-  "Eres mi persona favorita",
+  "Mi persona favorita",
   "Gracias por existir",
-  "Tu sonrisa es mi calma",
-  "Mi corazón es tuyo",
-  "Amarte es fácil"
+  "Tu sonrisa es mi calma"
 ];
 
-// BOTÓN NO
+// Botón NO
 function decirNo() {
   const no = document.getElementById("no");
   const si = document.getElementById("si");
@@ -201,8 +198,9 @@ function decirNo() {
   no.style.top = Math.random() * 60 + "px";
 }
 
-// CARTAS
+// Cartas
 function abrirCarta1() {
+  document.getElementById("principal").style.display = "none";
   document.getElementById("carta1").style.display = "flex";
 }
 
@@ -213,19 +211,21 @@ function cerrarCarta1() {
 
 function final() {
   document.getElementById("carta2").style.display = "none";
-  document.getElementById("principal").style.display = "none";
-
-  for (let i = 0; i < 100; i++) {
-    const f = document.createElement("div");
-    f.className = "frase";
-    f.innerText = frasesLindas[Math.floor(Math.random() * frasesLindas.length)];
-    f.style.left = Math.random() * 90 + "vw";
-    f.style.top = Math.random() * 90 + "vh";
-    document.body.appendChild(f);
-  }
+  setInterval(crearFrase, 1200);
 }
 
-// CORAZONES
+// Frases flotantes
+function crearFrase() {
+  const f = document.createElement("div");
+  f.className = "frase";
+  f.innerText = frasesLindas[Math.floor(Math.random() * frasesLindas.length)];
+  f.style.left = Math.random() * 90 + "vw";
+  f.style.top = Math.random() * 90 + "vh";
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 4000);
+}
+
+// Corazones
 function crearCorazon() {
   const h = document.createElement("div");
   h.className = "heart";
