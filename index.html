@@ -17,19 +17,20 @@ body {
   overflow: hidden;
 }
 
+/* Tarjeta principal */
 .card {
   background: rgba(255,255,255,0.35);
   backdrop-filter: blur(10px);
-  padding: 30px;
+  padding: 25px;
   border-radius: 25px;
   text-align: center;
-  max-width: 340px;
+  max-width: 360px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   z-index: 5;
 }
 
 h1 { color: #ff4d6d; }
-p { color: white; font-size: 17px; }
+p { color: white; font-size: 16px; line-height: 1.4; }
 
 .buttons {
   margin-top: 20px;
@@ -46,17 +47,39 @@ button {
   transition: all 0.3s ease;
 }
 
-#si {
-  background: #ff4d6d;
-  color: white;
-}
+#si { background: #ff4d6d; color: white; }
+#no { background: white; color: #ff4d6d; position: absolute; }
 
-#no {
+/* Cartas */
+.carta {
+  display: none;
+  position: fixed;
+  inset: 0;
+  margin: auto;
   background: white;
   color: #ff4d6d;
-  position: absolute;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 320px;
+  height: fit-content;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  z-index: 20;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
+.carta p {
+  color: #ff4d6d;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* Corazones */
 .heart {
   position: absolute;
   font-size: 22px;
@@ -69,41 +92,73 @@ button {
   to { transform: translateY(-10vh); }
 }
 
-.carta {
-  display: none;
-  position: fixed;
-  background: white;
-  color: #ff4d6d;
-  padding: 25px;
-  border-radius: 20px;
-  max-width: 320px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  z-index: 20;
+/* Frases finales */
+.frase {
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  opacity: 0;
+  animation: aparecer 3s ease forwards;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<!-- CONTENIDO PRINCIPAL -->
+<div class="card" id="principal">
   <h1>💖 Mi vida 💖</h1>
-  <p>Desde que llegaste, todo es más bonito.</p>
+
+  <p>
+    Hoy cumplimos un mes más juntos  
+    y aunque no siempre pueda estar físicamente,  
+    hay algo que nunca cambia:  
+    <strong>siempre te elijo a ti</strong>.
+  </p>
+
+  <p>
+    Hoy el amor se celebra en todas partes,  
+    pero yo no quiero celebrar cualquier amor,  
+    quiero celebrar <strong>el que construimos tú y yo</strong>.
+  </p>
+
+  <p>
+    Quiero que este día sea nuestro,  
+    hacerlo especial a nuestra manera  
+    y llamarlo <strong>nuestro San Valentín</strong>.
+  </p>
+
   <p><strong>¿Quieres ser mi San Valentín? 💘</strong></p>
 
   <div class="buttons">
-    <button id="si" onclick="aceptar()">Sí 💕</button>
+    <button id="si" onclick="abrirCarta1()">Sí 💕</button>
     <button id="no" onclick="decirNo()">No 🙈</button>
   </div>
 </div>
 
-<div class="carta" id="carta">
-  <h2>💌</h2>
+<!-- CARTA 1 -->
+<div class="carta" id="carta1">
   <p>
-    Gracias por decir que sí 💖  
-    Prometo seguir eligiéndote  
-    hoy, mañana y siempre.
+    Gracias por decir que sí, mi vida 💖  
+    No sabes lo feliz que me hace  
+    caminar este camino contigo.
   </p>
+  <button onclick="cerrarCarta1()">Cerrar</button>
+</div>
+
+<!-- CARTA 2 -->
+<div class="carta" id="carta2">
+  <p>
+    <strong>Te amo</strong><br><br>
+    y eres el amor de mi vida,<br>
+    cacheticos ☺️
+  </p>
+  <button onclick="final()">Cerrar</button>
 </div>
 
 <script>
@@ -118,27 +173,59 @@ const frasesNo = [
   "Ya casi dices que sí 💕"
 ];
 
-function aceptar() {
-  document.getElementById("carta").style.display = "block";
-}
+const frasesLindas = [
+  "Te amo más de lo que imaginas 💖",
+  "Eres mi lugar seguro",
+  "Contigo todo es mejor",
+  "Siempre te elijo",
+  "Mi amor por ti no duda",
+  "Eres mi persona favorita",
+  "Gracias por existir",
+  "Tu sonrisa es mi calma",
+  "Mi corazón es tuyo",
+  "Amarte es fácil"
+];
 
+// BOTÓN NO
 function decirNo() {
   const no = document.getElementById("no");
   const si = document.getElementById("si");
 
-  // Cambia el texto del botón NO
   no.innerText = frasesNo[Math.min(contadorNo, frasesNo.length - 1)];
   contadorNo++;
 
-  // Agranda el botón SÍ
   sizeSi += 0.25;
   si.style.transform = `scale(${sizeSi})`;
 
-  // Mueve el botón NO
   no.style.left = Math.random() * 200 + "px";
   no.style.top = Math.random() * 60 + "px";
 }
 
+// CARTAS
+function abrirCarta1() {
+  document.getElementById("carta1").style.display = "flex";
+}
+
+function cerrarCarta1() {
+  document.getElementById("carta1").style.display = "none";
+  document.getElementById("carta2").style.display = "flex";
+}
+
+function final() {
+  document.getElementById("carta2").style.display = "none";
+  document.getElementById("principal").style.display = "none";
+
+  for (let i = 0; i < 100; i++) {
+    const f = document.createElement("div");
+    f.className = "frase";
+    f.innerText = frasesLindas[Math.floor(Math.random() * frasesLindas.length)];
+    f.style.left = Math.random() * 90 + "vw";
+    f.style.top = Math.random() * 90 + "vh";
+    document.body.appendChild(f);
+  }
+}
+
+// CORAZONES
 function crearCorazon() {
   const h = document.createElement("div");
   h.className = "heart";
