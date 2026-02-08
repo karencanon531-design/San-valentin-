@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi vida 💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card {
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
+  max-width: 340px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  z-index: 5;
+}
+
+h1 { color: #ff4d6d; }
+p { color: white; font-size: 17px; }
+
+.buttons {
+  margin-top: 20px;
+  position: relative;
+  height: 90px;
+}
+
+button {
+  padding: 12px 22px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#si {
+  background: #ff4d6d;
+  color: white;
+}
+
+#no {
+  background: white;
+  color: #ff4d6d;
+  position: absolute;
+}
+
+.heart {
+  position: absolute;
+  font-size: 22px;
+  animation: flotar 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes flotar {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
+.carta {
+  display: none;
+  position: fixed;
+  background: white;
+  color: #ff4d6d;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  z-index: 20;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>💖 Mi vida 💖</h1>
+  <p>Desde que llegaste, todo es más bonito.</p>
+  <p><strong>¿Quieres ser mi San Valentín? 💘</strong></p>
+
+  <div class="buttons">
+    <button id="si" onclick="aceptar()">Sí 💕</button>
+    <button id="no" onclick="decirNo()">No 🙈</button>
+  </div>
+</div>
+
+<div class="carta" id="carta">
+  <h2>💌</h2>
+  <p>
+    Gracias por decir que sí 💖  
+    Prometo seguir eligiéndote  
+    hoy, mañana y siempre.
+  </p>
+</div>
+
+<script>
+let contadorNo = 0;
+let sizeSi = 1;
+
+const frasesNo = [
+  "¿Segura? 🥺",
+  "¿De verdad segura? 😢",
+  "Piénsalo otra vez 💔",
+  "El sí se ve mejor 😏",
+  "Ya casi dices que sí 💕"
+];
+
+function aceptar() {
+  document.getElementById("carta").style.display = "block";
+}
+
+function decirNo() {
+  const no = document.getElementById("no");
+  const si = document.getElementById("si");
+
+  // Cambia el texto del botón NO
+  no.innerText = frasesNo[Math.min(contadorNo, frasesNo.length - 1)];
+  contadorNo++;
+
+  // Agranda el botón SÍ
+  sizeSi += 0.25;
+  si.style.transform = `scale(${sizeSi})`;
+
+  // Mueve el botón NO
+  no.style.left = Math.random() * 200 + "px";
+  no.style.top = Math.random() * 60 + "px";
+}
+
+function crearCorazon() {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "💗";
+  h.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}
+
+setInterval(crearCorazon, 400);
+</script>
+
+</body>
+</html>
